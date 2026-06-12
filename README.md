@@ -2,7 +2,46 @@
 
 An OpenClaw plugin for App Store icon and screenshot generation using the Aqua Developer API.
 
-This project is built using **TypeScript** and validated using the offline **OpenClaw Plugin Inspector** dev tool, removing the requirement to install the full OpenClaw gateway platform locally during development.
+### Why use this plugin?
+* **Instant App Store Asset Generation**: Create production-ready App Store screenshots and app icons in seconds right from your AI chat.
+* **Polished Presets**: No need to manually align mockups or wrap images. The plugin handles typography pairing, device mockup placement, and custom backgrounds automatically.
+* **Smart Intent Routing**: Includes a native OpenClaw skill that dynamically guides the agent to use the correct tool (e.g. generating an icon set vs a single PNG, or modifying a single screenshot vs building a screenshot set) based on your prompt.
+* **Precision Copy Validation**: Built-in verification helps format titles and subtitles to avoid rendering errors or platform rejection.
+
+## Installation & Quick Start
+
+Get up and running with three simple steps:
+
+### 1. Register the Plugin
+Add the plugin directory to your `openclaw.json` configuration file (usually in `~/.openclaw/openclaw.json`):
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "openclaw-plugin-aqua": {
+        "enabled": true,
+        "localPath": "/absolute/path/to/openclaw-plugin-aqua"
+      }
+    }
+  }
+}
+```
+
+### 2. Configure your API Key
+Add your Aqua API key to the `.env` file in your OpenClaw workspace:
+
+```env
+AQUA_API_KEY="your_aqua_api_key_here"
+```
+
+### 3. Build the Plugin
+Run the build script in the plugin directory to compile the source code:
+```bash
+npm install && npm run build
+```
+
+Once installed, you can simply ask your OpenClaw agent to create icons or screenshots for your iOS application, and it will run the tools automatically!
 
 ## Features & Tools
 
