@@ -1,0 +1,47 @@
+{
+  "name": "openclaw-plugin-aqua",
+  "version": "1.0.0",
+  "description": "Aqua plugin for OpenClaw AI assistant platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "plugin:check": "plugin-inspector check --no-openclaw --runtime --mock-sdk --allow-execute",
+    "plugin:inspect": "plugin-inspector inspect --no-openclaw --runtime --mock-sdk --allow-execute"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vkalahas/openclaw-plugin-aqua.git"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "aqua"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "typebox": "^1.2.8"
+  },
+  "devDependencies": {
+    "@openclaw/plugin-inspector": "^0.3.14",
+    "@types/node": "^22.17.0",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.5.17"
+  },
+  "openclaw": {
+    "extensions": [
+      "./src/index.ts"
+    ],
+    "runtimeExtensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.5.17",
+      "minGatewayVersion": "2026.5.17"
+    }
+  }
+}

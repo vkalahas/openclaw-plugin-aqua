@@ -1,0 +1,25 @@
+{
+  "id": "openclaw-plugin-aqua",
+  "name": "OpenClaw Plugin Aqua",
+  "description": "An OpenClaw plugin for water-related conversions and status checks.",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "unit": {
+        "type": "string",
+        "enum": [
+          "metric",
+          "imperial"
+        ],
+        "description": "Default temperature unit system (metric or imperial)",
+        "default": "metric"
+      }
+    }
+  },
+  "contracts": {
+    "tools": [
+      "aqua_ping",
+      "aqua_temperature_convert"
+    ]
+  }
+}
