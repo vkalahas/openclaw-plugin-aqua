@@ -1,6 +1,6 @@
 # OpenClaw Plugin Aqua
 
-A standard OpenClaw plugin for water-related conversions and checks.
+An OpenClaw plugin for App Store icon and screenshot generation using the Aqua Developer API.
 
 This project is built using **TypeScript** and validated using the offline **OpenClaw Plugin Inspector** dev tool, removing the requirement to install the full OpenClaw gateway platform locally during development.
 
@@ -8,23 +8,49 @@ This project is built using **TypeScript** and validated using the offline **Ope
 
 This plugin exposes the following tools to the OpenClaw AI agent:
 
-### 1. `aqua_ping`
-* **Description:** Performs a status and system check of the Aqua plugin configuration.
-* **Parameters:** None (`{}`)
-* **Returns:** A health status, ISO timestamp, and the currently configured temperature unit system.
-
-### 2. `aqua_temperature_convert`
-* **Description:** Converts water temperature values between Celsius and Fahrenheit.
+### 1. `aqua_create_icon`
+* **Description:** Generates a single high-quality master App Store icon PNG file from a text prompt.
 * **Parameters:**
-  * `temperature` (Number): The temperature value to convert.
-  * `from` (String: `"C"` or `"F"`): The source unit system.
-* **Returns:** An object containing the original temperature string and the converted temperature string.
+  * `prompt` (String): Visual description of the app icon (max 500 characters, no URLs).
+  * `outputPath` (String): Local path to save the generated PNG file (e.g. `./icon.png`).
+* **Returns:** A success message, the resolved local file path, and the generated file size in bytes.
+
+### 2. `aqua_create_icon_set`
+* **Description:** Generates a full App Store icon set ZIP bundle containing various icon sizes from a text prompt.
+* **Parameters:**
+  * `prompt` (String): Visual description of the app icon set (max 500 characters, no URLs).
+  * `outputPath` (String): Local path to save the generated ZIP archive (e.g. `./icon_set.zip`).
+* **Returns:** A success message, the resolved local archive path, and the ZIP file size in bytes.
+
+### 3. `aqua_create_screenshot`
+* **Description:** Polishes a raw iPhone capture (1206x2622 px PNG) into a finished App Store listing screenshot with header copy, extracting it directly from the API response ZIP.
+* **Parameters:**
+  * `appDisplayName` (String): App name displayed in the screenshot header.
+  * `fontPairing` (Optional String): Typography preset (e.g. `editorial`, `modern`, `clean`, `dev`, etc.).
+  * `slot` (Optional Number): Screenshot slot index (1 to 5, defaults to 1).
+  * `position` (Optional String): Device mockup and text alignment preset.
+  * `title` (Optional String): Header title. Omit/leave empty for auto-generated AI copy.
+  * `subtitle` (Optional String): Header subtitle. Omit/leave empty for auto-generated AI copy.
+  * `backgroundColor` (Optional String): Background style (`auto`, hex code, gradient, or Unsplash URL).
+  * `capturePath` (String): Path to the raw iPhone PNG capture file.
+  * `outputPath` (String): Local path to save the polished output PNG screenshot (e.g. `./screenshot.png`).
+* **Returns:** A success message, the resolved local output path, and the generated PNG size in bytes.
+
+### 4. `aqua_create_screenshot_set`
+* **Description:** Generates multiple polished App Store listing screenshots from multiple raw captures and outputs a ZIP archive.
+* **Parameters:**
+  * `appDisplayName` (String): App name displayed in screenshot headers.
+  * `fontPairing` (Optional String): Typography preset.
+  * `screenshots` (Array of configs): List of screenshot items (specifying `slot`, `position`, `title`, `subtitle`, `backgroundColor`, and `capturePath` per item).
+  * `outputPath` (String): Local path to save the generated ZIP archive (e.g. `./screenshots.zip`).
+* **Returns:** A success message, the resolved ZIP archive path, and the ZIP file size in bytes.
 
 ## Configuration Schema
 
 The plugin accepts the following configuration fields in `openclaw.plugin.json` / gateway config:
 
-* `unit` (Optional String: `"metric"` | `"imperial"`, default: `"metric"`): The default temperature system.
+* `apiKey` (Optional String): Aqua developer API key. If omitted, the `AQUA_API_KEY` environment variable is used.
+* `baseUrl` (Optional String, default: `"https://api.aqua-app.com"`): Optional custom base URL for the Aqua API.
 
 ---
 

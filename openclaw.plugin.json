@@ -1,25 +1,27 @@
 {
   "id": "openclaw-plugin-aqua",
   "name": "OpenClaw Plugin Aqua",
-  "description": "An OpenClaw plugin for water-related conversions and status checks.",
+  "description": "An OpenClaw plugin for App Store icon and screenshot generation using the Aqua Developer API.",
   "configSchema": {
     "type": "object",
     "properties": {
-      "unit": {
+      "apiKey": {
         "type": "string",
-        "enum": [
-          "metric",
-          "imperial"
-        ],
-        "description": "Default temperature unit system (metric or imperial)",
-        "default": "metric"
+        "description": "Aqua developer API key. If not provided, the AQUA_API_KEY environment variable will be used."
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "Optional custom base URL for the Aqua API. Defaults to https://api.aqua-app.com.",
+        "default": "https://api.aqua-app.com"
       }
     }
   },
   "contracts": {
     "tools": [
-      "aqua_ping",
-      "aqua_temperature_convert"
+      "aqua_create_icon",
+      "aqua_create_icon_set",
+      "aqua_create_screenshot",
+      "aqua_create_screenshot_set"
     ]
   }
 }

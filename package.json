@@ -22,10 +22,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "jszip": "^3.10.1",
     "typebox": "^1.2.8"
   },
   "devDependencies": {
     "@openclaw/plugin-inspector": "^0.3.14",
+    "@types/jszip": "^3.4.0",
     "@types/node": "^22.17.0",
     "typescript": "^5.4.5"
   },
