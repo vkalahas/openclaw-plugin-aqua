@@ -2,6 +2,9 @@
   "id": "openclaw-plugin-aqua",
   "name": "OpenClaw Plugin Aqua",
   "description": "An OpenClaw plugin for App Store icon and screenshot generation using the Aqua Developer API.",
+  "skills": [
+    "./skills"
+  ],
   "configSchema": {
     "type": "object",
     "properties": {
