@@ -38,3 +38,12 @@ Keep commits **atomic**. An atomic commit is a single, logical unit of change.
 - **Single Responsibility**: Each commit should do exactly one thing (e.g., fix a bug, add a feature, refactor a function).
 - **Working State**: The codebase must build and pass tests at every single commit. Never commit broken code.
 - **Ease of Code Review**: Small, focused commits are significantly easier to review, revert, or cherry-pick.
+
+---
+
+## 3. Tool Selection Guidelines for Agents
+When interacting with a user to perform icon or screenshot tasks:
+- **Icons**: If the user asks for an icon, use `aqua_create_icon_set` unless the user explicitly asks for a single PNG (in which case, use `aqua_create_icon`).
+- **Screenshots**: If the user asks for screenshots, use `aqua_create_screenshot_set`.
+- **Single Screenshot**: If the user asks to modify or create a single screenshot, use `aqua_create_screenshot`.
+

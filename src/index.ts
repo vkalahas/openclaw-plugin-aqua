@@ -45,7 +45,7 @@ export default defineToolPlugin({
     // 1. Tool to generate a single master icon PNG
     tool({
       name: "aqua_create_icon",
-      description: "Generates a single high-quality master App Store icon PNG file from a text prompt.",
+      description: "Generates a single high-quality master App Store icon PNG file from a text prompt. Use this tool ONLY when the user explicitly asks for a single PNG file. If the user just asks for an icon or icon set in general, use aqua_create_icon_set instead.",
       parameters: Type.Object({
         prompt: Type.String({
           description: "Visual description of the app icon (max 500 characters, e.g. 'minimal blue finance app icon with a subtle chart'). No URLs/links allowed.",
@@ -76,7 +76,7 @@ export default defineToolPlugin({
     // 2. Tool to generate an App Store icon set (.icon ZIP bundle)
     tool({
       name: "aqua_create_icon_set",
-      description: "Generates an App Store icon set ZIP bundle containing various icon sizes from a text prompt.",
+      description: "Generates an App Store icon set ZIP bundle containing various icon sizes from a text prompt. Use this tool by default whenever the user asks for an app icon, unless the user explicitly requests a single PNG icon.",
       parameters: Type.Object({
         prompt: Type.String({
           description: "Visual description of the app icon set (max 500 characters). No URLs/links allowed.",
@@ -107,7 +107,7 @@ export default defineToolPlugin({
     // 3. Tool to generate a single polished App Store screenshot from a raw capture
     tool({
       name: "aqua_create_screenshot",
-      description: "Polishes a raw portrait iPhone capture into a finished App Store listing screenshot with header copy.",
+      description: "Polishes a raw portrait iPhone capture into a finished App Store listing screenshot with header copy. Use this tool when the user asks to modify or create a single screenshot. If the user asks to generate screenshots in general, use aqua_create_screenshot_set instead.",
       parameters: Type.Object({
         appDisplayName: Type.String({
           description: "The name of the app to display in the screenshot header (max 120 characters).",
@@ -230,7 +230,7 @@ export default defineToolPlugin({
     // 4. Tool to generate a set of polished screenshots from multiple captures
     tool({
       name: "aqua_create_screenshot_set",
-      description: "Generates multiple polished App Store listing screenshots from raw captures and outputs a ZIP archive.",
+      description: "Generates multiple polished App Store listing screenshots from raw captures and outputs a ZIP archive. Use this tool when the user asks for screenshots.",
       parameters: Type.Object({
         appDisplayName: Type.String({
           description: "The name of the app to display in the screenshot headers (max 120 characters).",
